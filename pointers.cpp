@@ -1,5 +1,14 @@
 #include <iostream>
 
+void make_it_32(int& it) {
+  it = 32;
+}
+
+int* create_array(int n) {
+  int* array = new array[n];
+  return array;
+}
+
 int main(int argc, char const *argv[]) {
   /*
    * Here we're making an int variable n and a pointer variable n_ptr.  n_ptr
@@ -33,5 +42,47 @@ int main(int argc, char const *argv[]) {
   int& n_ref = n;
   n_ref = 4;
   std::cout << "n: " << n << std::endl;
+
+
+  make_it_32(n);
+  std::cout << "n: " << n << std::endl;
+
+  int* n_dyn = new int;
+  delete n_dyn;
+
+  int array[10] = {1, 2, 3, 4, 5, 6, 7, 8};
+  int array2d[3][3];
+
+  int* array_dyn = new int[8];
+
+  array_dyn[0] = 5;
+  array_dyn[4] = 20;
+
+  *array_dyn = 10;
+  *(array_dyn + 4) = 10;
+
+  std::cout << std::endl;
+  std::cout << "array_dyn[0]: " << array_dyn[0] << std::endl;
+  std::cout << "array_dyn[4]: " << array_dyn[4] << std::endl;
+
+  for (int i = 0, * ptr = array_dyn; i < 8; i++, ptr++) {
+    *ptr = i * 10;
+    // array_dyn[i] = i * 10;
+  }
+
+  int** matrix = new int*[3];
+  for (int i = 0; i < 3; i++) {
+    matrix[i] = new int[3];
+  }
+
+  for (int i = 0; i < 3; i++) {
+    delete[] matrix[i];
+  }
+  delete[] matrix;
+
+  delete[] array_dyn;
+
+  int* array2 = create_array(10);
+  delete[] array2;
 
 }
